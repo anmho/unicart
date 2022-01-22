@@ -7,11 +7,15 @@ db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    carts = db.relationship("Cart", backref="user", lazy=True)
 
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    items = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
-class CartItem(db.Model):
+class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
