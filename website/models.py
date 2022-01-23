@@ -13,10 +13,11 @@ class User(db.Model, UserMixin):
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    items = db.Column(db.String(100)) # change to backref item
+    title = db.Column(db.String(50))
+    items = db.relationship("Item", backref="cart", lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # add foreignkey cart
+    cart_id = db.Column(db.Integer, db.ForeignKey("cart.id"))
