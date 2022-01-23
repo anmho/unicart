@@ -32,11 +32,13 @@ def home():
     for user in users:
         new_user = User(name=user["name"])
         db.session.add(new_user)
-        for cart in user["carts"]:
-            
-            new_cart = Cart(cart["items"])
-            db.session.add(cart)
+        db.session.commit()
 
-    db.session.commit()
+        for cart in user["carts"]:
+            found_user = User.query.filter_by(name=user["name"]).first()
+            user_id = found_user.id
+            new_cart = Cart(items=cart["items"], user_id=user_id)
+            db.session.add(new_cart)
+            db.session.commit()
 
     return render_template("index.html")
