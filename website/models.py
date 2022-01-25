@@ -7,7 +7,8 @@ db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(20))
+    email = db.Column(db.String(100))
+    password = db.Column(db.String(100))
     carts = db.relationship("Cart", backref="user", lazy=True)
 
 

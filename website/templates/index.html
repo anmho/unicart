@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% block title %} Home {% endblock %} {% block content
-%}
+{% extends "base.html" %} {% block title %} Home {% endblock %} {% block content %}
 <h1>Home</h1>
 <!-- Button trigger modal -->
 <button
@@ -23,7 +22,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Create Cart</h5>
         <button
           type="button"
           class="close"
@@ -34,9 +33,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST">
-          form content
-        </form>
+        <div class="container">
+          <form method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" />
+            </div>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
