@@ -9,6 +9,20 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        found_user = User.query.filter_by(email=email).first()
+
+        if found_user:
+            if check_password_hash(pwhash=found_user.password, password=password):
+                flask_login.login_user(found_user, remember=True)
+                flash("Login successful", "success")
+                return redirect(url_for("views.home"))
+            else:
+                flash("There was an error", "error")
+        else:
+            flash("User not found")
 
     return render_template("login.html")
 
@@ -48,5 +62,5 @@ def sign_up():
 
 @auth.route("/logout")
 def logout():
-    logout_user()
-    return redirect(url_for("login"))
+    flask_login.logout_user()
+    return redirect(url_for("auth.login"))
