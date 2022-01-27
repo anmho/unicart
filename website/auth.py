@@ -1,6 +1,5 @@
-from tkinter import E
 from flask import Blueprint, render_template, url_for, redirect, request, flash
-from flask_login import login_user
+from flask_login import login_user, logout_user
 import flask_login
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User, db
@@ -8,8 +7,9 @@ from .models import User, db
 auth = Blueprint("auth", __name__)
 
 
-@auth.route("/login")
+@auth.route("/login", methods=["POST", "GET"])
 def login():
+
     return render_template("login.html")
 
 
@@ -48,4 +48,5 @@ def sign_up():
 
 @auth.route("/logout")
 def logout():
-    pass
+    logout_user()
+    return redirect(url_for("login"))
