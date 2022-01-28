@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
-
 db = SQLAlchemy()
 
 
@@ -14,7 +13,8 @@ class User(db.Model, UserMixin):
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(100))
+    description = db.Column(db.String(100))
     items = db.relationship("Item", backref="cart", lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 

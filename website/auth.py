@@ -29,7 +29,6 @@ def login():
 
 @auth.route("/sign-up", methods=["POST", "GET"])
 def sign_up():
-    # post request
     if request.method == "POST":
         email = request.form.get("email")
         password1 = request.form.get("password1")
