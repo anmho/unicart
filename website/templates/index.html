@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% block title %} Home {% endblock %} {% block content
 %}
 <h1>Home</h1>
+<p>{{ current_user.email }}</p>
 <!-- Button trigger modal -->
 <button
   type="button"
@@ -10,6 +11,12 @@
 >
   Create New Cart
 </button>
+
+{% for cart in user.carts %}
+<div class="container">
+  <p>{{cart.name}}: {{cart.description}}</p>
+</div>
+{% endfor %}
 
 <!-- Modal -->
 <div

@@ -7,12 +7,14 @@ views = Blueprint("views", __name__)
 
 @views.route("/", methods=["GET", "POST"])
 def home():
+
     if request.method == "POST":
         name = request.form.get("name")
         description = request.form.get("description")
 
         if name and description:
-            new_cart = Cart(name=name, description=description, user_id=current_user.id)
+            new_cart = Cart(name=name, description=description,
+                            user_id=current_user.id)
             db.session.add(new_cart)
             db.session.commit()
             flash("Successfully added cart", "success")
@@ -22,7 +24,7 @@ def home():
             if not description:
                 flash("Enter a description", "error")
 
-    return render_template("index.html")
+    return render_template("index.html", user=current_user)
 
 
 @views.route("/create-cart", methods=["GET", "POST"])
