@@ -1,9 +1,9 @@
-from flask import Blueprint, flash, render_template, request
+from flask import Blueprint, flash, render_template, request, jsonify
 from sqlalchemy import desc
 from .models import User, Cart, db
 from flask_login import current_user
 views = Blueprint("views", __name__)
-
+import json
 
 @views.route("/", methods=["GET", "POST"])
 def home():
@@ -30,3 +30,15 @@ def home():
 @views.route("/create-cart", methods=["GET", "POST"])
 def create_cart():
     pass
+
+@views.route("/delete-cart", methods=["POST"])
+def delete_cart():
+    body = json.loads(request.data)
+    cartId = body["cartId"]
+    cart = Cart.query.get(cartId)
+
+    if cart and cart.user_id == current_user.id:
+        db.session.delete(cart)
+        db.session.commit()
+    
+    return jsonify({})

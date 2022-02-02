@@ -5,23 +5,53 @@
 <!-- Button trigger modal -->
 <button
   type="button"
-  class="btn btn-primary"
+  class="btn btn-primary mb-4"
   data-toggle="modal"
-  data-target="#exampleModal"
+  data-target="#createCartModal"
 >
   Create New Cart
 </button>
 
-{% for cart in user.carts %}
-<div class="container">
-  <p>{{cart.name}}: {{cart.description}}</p>
+<div id="carts" name="carts" class="list-group d-flex flex-column">
+  {% for cart in user.carts %}
+
+  <a href="#" id="{{cart.id}}" class="list-group-item list-group-item-action">
+    <div class="d-flex">
+      <div class="p-2"><h3>{{cart.name}}</h3></div>
+      <div class="ml-auto pt-2">
+        <button
+          id="editBtn"
+          type="button"
+          class="btn btn-primary"
+          class="close-button"
+          data-toggle="modal"
+          data-target="#editCartModal"
+        >
+          Edit
+        </button>
+
+        <button
+          id="deleteBtn"
+          type="button"
+          class="btn btn-danger"
+          class="close-button"
+          onclick="deleteCart({{cart.id}})"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="d-flex">
+      <small class="p-2">{{cart.description}}</small>
+    </div>
+  </a>
+  {% endfor %}
 </div>
-{% endfor %}
 
 <!-- Modal -->
 <div
   class="modal fade"
-  id="exampleModal"
+  id="createCartModal"
   tabindex="-1"
   role="dialog"
   aria-labelledby="exampleModalLabel"
@@ -66,6 +96,39 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="editCartModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
