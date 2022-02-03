@@ -15,7 +15,7 @@
 <div id="carts" name="carts" class="list-group d-flex flex-column">
   {% for cart in user.carts %}
 
-  <a href="#" id="{{cart.id}}" class="list-group-item list-group-item-action">
+  <div id="{{cart.id}}" class="list-group-item list-group-item-action">
     <div class="d-flex">
       <div class="p-2"><h3>{{cart.name}}</h3></div>
       <div class="ml-auto pt-2">
@@ -44,11 +44,11 @@
     <div class="d-flex">
       <small class="p-2">{{cart.description}}</small>
     </div>
-  </a>
+  </div>
   {% endfor %}
 </div>
 
-<!-- Modal -->
+<!-- Create Cart -->
 <div
   class="modal fade"
   id="createCartModal"
@@ -72,7 +72,7 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <form method="POST">
+          <form id="create" method="POST">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" name="name" id="name" />
@@ -92,7 +92,9 @@
               >
                 Close
               </button>
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button name="create" type="submit" class="btn btn-primary">
+                Create
+              </button>
             </div>
           </form>
         </div>
@@ -101,7 +103,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Edit Cart -->
 <div
   class="modal fade"
   id="editCartModal"
@@ -123,12 +125,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">...</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-body">
+        <form id="edit" method="POST">
+          <div class="form-group"></div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" name="edit" class="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
