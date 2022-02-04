@@ -14,9 +14,8 @@ def create_cart(name, description):
     flash("Successfully added cart", "success")
 
 
-@views.route("/edit-cart", methods=["POST"])
+@views.route("/edit-cart/<id>", methods=["POST"])
 def edit_cart(id):
-    flash(id)
     flash("Edit")
     flash(request.form)
     name = request.form.get("name")

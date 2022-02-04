@@ -48,4 +48,8 @@ function deleteCart(cartId) {
   });
 }
 
+function addItem() {
+  
+}
+
 init();
