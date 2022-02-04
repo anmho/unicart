@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, flash, render_template, request, jsonify
+from flask import Blueprint, flash, render_template, request, jsonify, redirect, url_for
 from sqlalchemy import desc
 from .models import Cart, db
 from flask_login import current_user
@@ -14,14 +14,29 @@ def create_cart(name, description):
     flash("Successfully added cart", "success")
 
 
-# @views.route("/edit-cart", methods=["POST"])
-# def edit_cart
+@views.route("/edit-cart", methods=["POST"])
+def edit_cart(id):
+    flash(id)
+    flash("Edit")
+    flash(request.form)
+    name = request.form.get("name")
+    url = request.form.get("url")
+    flash(name)
+    flash(url)
+
+    return redirect(url_for("views.home"))
+
 
 @views.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
-        if "edit" in request.form:
-            flash("Edit")
+        # if "edit" in request.form:
+        #     flash("Edit")
+        #     flash(request.form)
+        #     name = request.form.get("name")
+        #     url = request.form.get("url")
+        #     flash(name)
+        #     flash(url)
         if "create" in request.form:
             name = request.form.get("name")
             description = request.form.get("description")
