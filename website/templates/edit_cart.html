@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block content %}
+<h1>Edit {{cart.name}}</h1>
+<p>{{cart.description}}</p>
+
+<div id="items" class="list-group">
+  {% for item in cart.items|reverse %}
+
+  <a
+    href="{{item.url}}"
+    class="d-flex p-2 flex-row list-group-item list-group-item-action"
+  >
+    <div class="m-1">{{item.name}}</div>
+
+    <button type="submit" class="m-1 ml-auto btn btn-primary">Edit</button>
+  </a>
+  {% endfor %}
+
+  <li class="p-2 list-group-item">
+    <form method="POST" autocomplete="off">
+      <div class="d-flex flex-row">
+        <input
+          name="name"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Name"
+        />
+        <input
+          name="url"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Link"
+        />
+        <button type="submit" class="m-1 btn btn-primary">Add</button>
+      </div>
+    </form>
+  </li>
+</div>
+
+{% endblock %}

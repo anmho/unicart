@@ -13,7 +13,15 @@
     />
 
     <meta charset="utf-8" />
-    <title>{% block title %} {% endblock %}</title>
+      <title>
+        {% block title %}
+          {% if title %}
+            {{title}}
+          {% else %}
+            Unicart
+          {% endif %}
+        {% endblock %}
+      </title>
   </head>
 
   <body>
@@ -32,35 +40,46 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+
           {% if current_user.is_authenticated %}
           <li class="nav-item active">
-            <a class="nav-link" href="{{url_for('views.home')}}"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="{{url_for('views.home')}}">
+              Home 
+              <span class="sr-only">(current)</span>
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.logout')}}">Log Out</a>
+            <a class="nav-link" href="{{url_for('auth.logout')}}">
+              Log Out
+            </a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.login')}}">Log In</a>
+            <a class="nav-link" href="{{url_for('auth.login')}}">
+              Log In
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{url_for('auth.sign_up')}}">Sign Up</a>
+            <a class="nav-link" href="{{url_for('auth.sign_up')}}">
+              Sign Up
+            </a>
           </li>
           {% endif %}
         </ul>
       </div>
     </nav>
 
-    {% with messages = get_flashed_messages(with_categories=true) %} {% for
-    category, message in messages %} {% if category == "error" %}
-    <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% elif category == "success" %}
-    <div class="alert alert-success" role="alert">{{ message }}</div>
-    {% else %}
-    <div class="alert alert-primary" role="alert">{{ message }}</div>
-    {% endif %} {% endfor %} {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %} 
+        {% if category == "error" %}
+          <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% elif category == "success" %}
+          <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% else %}
+          <div class="alert alert-primary" role="alert">{{ message }}</div>
+        {% endif %} 
+      {% endfor %} 
+    {% endwith %}
     <div class="container">{% block content %} {% endblock %}</div>
 
     <script
