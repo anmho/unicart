@@ -5,14 +5,20 @@
 <div id="items" class="list-group">
   {% for item in cart.items|reverse %}
 
-  <a
-    href="{{item.url}}"
+  <div
+    id="item.id"
     class="d-flex p-2 flex-row list-group-item list-group-item-action"
   >
-    <div class="m-1">{{item.name}}</div>
+    <a class="m-1" href="{{item.url}}"> {{item.name}} </a>
+    <button
+      onclick="console.log('clicked')"
+      type="button"
+      class="m-1 ml-auto btn btn-primary"
+    >
+      Edit
+    </button>
+  </div>
 
-    <button type="submit" class="m-1 ml-auto btn btn-primary">Edit</button>
-  </a>
   {% endfor %}
 
   <li class="p-2 list-group-item">
