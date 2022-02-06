@@ -44,6 +44,15 @@
       <small class="p-2">{{cart.description}}</small>
     </div>
 
+    <!-- Cart items -->
+    <div class="items d-none">
+      <div class="d-flex flex-row">
+        {% for item in cart.items %}
+        <p class="m-2">{{item.name}}</p>
+        {% endfor %}
+      </div>
+    </div>
+
 
   </div>
   {% endfor %}
