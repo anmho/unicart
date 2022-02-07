@@ -10,13 +10,23 @@
     class="d-flex p-2 flex-row list-group-item list-group-item-action"
   >
     <a class="m-1" href="{{item.url}}"> {{item.name}} </a>
-    <button
-      onclick="console.log('clicked')"
-      type="button"
-      class="m-1 ml-auto btn btn-primary"
-    >
-      Edit
-    </button>
+    <div class="ms-auto">
+      <button
+        onclick="console.log('clicked')"
+        type="button"
+        class="m-1 btn btn-primary"
+      >
+        Edit
+      </button>
+
+      <button
+        onclick="console.log('clicked')"
+        type="button"
+        class="m-1 ml-auto btn btn-danger close-button"
+      >
+        &times
+      </button>
+    </div>
   </div>
 
   {% endfor %}
