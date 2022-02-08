@@ -6,27 +6,69 @@
 <button
   type="button"
   class="btn btn-primary mb-4"
-  data-toggle="modal"
-  data-target="#createCartModal"
+  data-bs-toggle="modal"
+  data-bs-target="#createCartModal"
 >
   Create New Cart
 </button>
 
+<!-- Create Cart -->
+<div class="modal fade" id="createCartModal" tabindex="-1" aria-labelledby="createCartModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createCart">Create Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="create" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" />
+            <label for="description">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              name="description"
+              id="description"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button name="create" type="submit" class="btn btn-primary">
+              Create
+            </button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart list -->
 <div id="carts" name="carts" class="list-group d-flex flex-column">
   {% for cart in user.carts %}
 
   <div id="{{cart.id}}" class="list-group-item list-group-item-action">
     <div class="d-flex">
       <div class="p-2"><h3>{{cart.name}}</h3></div>
-      <div class="ml-auto pt-2">
-        
-        <a 
-          href="{{url_for('views.edit_cart', id=cart.id)}}" id="editBtn" 
-          type="button" 
-          class="btn btn-primary open-modal">
-            Edit
+      <div class="ms-auto pt-2">
+        <a
+          class="btn btn-primary"
+          href="{{url_for('views.edit_cart', id=cart.id)}}"
+          id="editBtn"
+          type="button"
+        >
+          Edit
         </a>
-        
 
         <button
           id="deleteBtn"
@@ -46,6 +88,7 @@
 
     <!-- Cart items -->
     <div class="items d-none">
+<<<<<<< HEAD
       <div class="d-flex flex-row">
         {% for item in cart.items %}
         <p class="m-2">{{item.name}}</p>
@@ -109,10 +152,16 @@
           </form>
         </div>
       </div>
+=======
+      <ul class="list-group list-group-horizontal">
+        {% for item in cart.items %}
+        <li class="list-group-item"><a href="{{item.url}}">{{item.name}}</a></li>
+        {% endfor %}
+      </ul>
+>>>>>>> f50f1da274cc6b672fc2a913333540a356c07bb1
     </div>
   </div>
+  {% endfor %}
 </div>
 
-
-</div>
 {% endblock %}
