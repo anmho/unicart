@@ -88,77 +88,11 @@
 
     <!-- Cart items -->
     <div class="items d-none">
-<<<<<<< HEAD
-      <div class="d-flex flex-row">
-        {% for item in cart.items %}
-        <p class="m-2">{{item.name}}</p>
-        {% endfor %}
-      </div>
-    </div>
-
-
-  </div>
-  {% endfor %}
-</div>
-
-<!-- Create Cart -->
-<div
-  class="modal fade"
-  id="createCartModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Cart</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <form id="create" method="POST">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" class="form-control" name="name" id="name" />
-              <label for="description">Description</label>
-              <input
-                type="text"
-                class="form-control"
-                name="description"
-                id="description"
-              />
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button name="create" type="submit" class="btn btn-primary">
-                Create
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-=======
       <ul class="list-group list-group-horizontal">
         {% for item in cart.items %}
         <li class="list-group-item"><a href="{{item.url}}">{{item.name}}</a></li>
         {% endfor %}
       </ul>
->>>>>>> f50f1da274cc6b672fc2a913333540a356c07bb1
     </div>
   </div>
   {% endfor %}
