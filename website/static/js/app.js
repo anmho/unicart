@@ -15,11 +15,6 @@ function init() {
   }
 }
 
-console.log(carts);
-function test() {
-  console.log("asdf");
-}
-
 let activated;
 
 function activate() {
@@ -48,8 +43,23 @@ function deleteCart(cartId) {
   });
 }
 
-function addItem() {
-  
+function addItem(id) {
+  console.log(id);
+  let parent = this.parentNode;
+  console.log(this);
+}
+
+function deleteItem(cartId, itemId) {
+  let item = document.getElementById(itemId);
+
+  item.remove();
+  fetch("/delete-item", {
+    method: "POST",
+    body: JSON.stringify({
+      cartId: cartId,
+      itemId: itemId,
+    }),
+  });
 }
 
 init();

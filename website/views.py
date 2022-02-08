@@ -71,3 +71,18 @@ def delete_cart():
         db.session.commit()
 
     return jsonify({})
+
+
+@views.route("/delete-item", methods=["POST"])
+def delete_item():
+    body = json.loads(request.data)
+    cartId = body["cartId"]
+    itemId = body["itemId"]
+    cart = Cart.query.get(cartId)
+    item = Item.query.filter_by(id=itemId, cart_id=cartId).first()
+
+    if item and cart.user_id == current_user.id:
+        db.session.delete(item)
+        db.session.commit()
+
+    return jsonify({})

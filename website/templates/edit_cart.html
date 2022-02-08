@@ -6,7 +6,7 @@
   {% for item in cart.items|reverse %}
 
   <div
-    id="item.id"
+    id="{{item.id}}"
     class="d-flex p-2 flex-row list-group-item list-group-item-action"
   >
     <a class="m-1" href="{{item.url}}"> {{item.name}} </a>
@@ -20,7 +20,7 @@
       </button>
 
       <button
-        onclick="console.log('clicked')"
+        onclick="deleteItem({{item.cart_id}}, {{item.id}})"
         type="button"
         class="m-1 ml-auto btn btn-danger close-button"
       >
