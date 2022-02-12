@@ -13,12 +13,23 @@
 </button>
 
 <!-- Create Cart -->
-<div class="modal fade" id="createCartModal" tabindex="-1" aria-labelledby="createCartModal" aria-hidden="true">
+<div
+  class="modal fade"
+  id="createCartModal"
+  tabindex="-1"
+  aria-labelledby="createCartModal"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="createCart">Create Cart</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <form id="create" method="POST">
@@ -47,7 +58,6 @@
             </button>
           </div>
         </form>
-        
       </div>
     </div>
   </div>
@@ -90,8 +100,37 @@
     <div class="items d-none">
       <ul class="list-group list-group-horizontal">
         {% for item in cart.items %}
-        <li class="list-group-item"><a href="{{item.url}}">{{item.name}}</a></li>
+        <li class="list-group-item">
+          <a class="link-primary" href="{{item.url}}">{{item.name}}</a>
+        </li>
         {% endfor %}
+
+        <!-- <li class="p-2 list-group-item">
+          <div class="d-flex flex-row">
+            <div id="addItem" class="d-flex flex-row d-none">
+              <input
+                name="name"
+                type="text"
+                class="m-1 form-control"
+                placeholder="Name"
+              />
+              <input
+                name="url"
+                type="text"
+                class="m-1 form-control"
+                placeholder="Link"
+              />
+            </div>
+            <button
+              id="addButton"
+              onclick="addItem({{cart.id}})"
+              type="button"
+              class="m-1 btn btn-primary"
+            >
+              Add
+            </button>
+          </div>
+        </li> -->
       </ul>
     </div>
   </div>
