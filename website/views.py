@@ -48,7 +48,7 @@ def edit_cart(id):
         name = request.form.get("name")
         url = request.form.get("url")
 
-        if name and url:
+        if name:
             new_item = Item(name=name, url=url, cart_id=cart.id)
             db.session.add(new_item)
             db.session.commit()
