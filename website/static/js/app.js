@@ -1,5 +1,3 @@
-
-
 function init() {
   let carts = document.getElementById("carts").children;
 
@@ -14,11 +12,13 @@ function highlightCart() {
   let items = this.querySelector(".items");
 
   if (activated == undefined) {
+    // No Items selected
     items.setAttribute("class", "p-2 items");
 
     this.setAttribute("class", "list-group-item list-group-item-action active");
     activated = this;
   } else if (this == activated) {
+    // This is already selected -> turn it off
     // Deactivate activated
     activated.setAttribute("class", "list-group-item list-group-item-action");
     // Hide items
@@ -34,7 +34,8 @@ function highlightCart() {
     // Deactivate activated
     activated.setAttribute("class", "list-group-item list-group-item-action");
     // Hide items
-    items.setAttribute("class", "items d-none");
+    let activatedItems = activated.querySelector(".items");
+    activatedItems.setAttribute("class", "items d-none");
 
     activated = this;
   }
