@@ -1,36 +1,43 @@
-function deleteCart() {
-  fetch({
-    method: "POST",
-    body: JSON.stringify({ cartId: cartId }),
-  }).then((response) => {
-    window.location.href = "/";
-  });
-}
+
 
 function init() {
   let carts = document.getElementById("carts").children;
 
   for (let cart of carts) {
-    cart.addEventListener("click", activate);
+    cart.addEventListener("click", highlightCart);
   }
 }
 
 let activated;
 
-function activate() {
-  if (activated) {
-    activated.setAttribute("class", "list-group-item list-group-item-action");
-
-    let items = activated.querySelector(".items");
-
-    items.setAttribute("class", "items d-none");
-  }
-
+function highlightCart() {
   let items = this.querySelector(".items");
-  items.setAttribute("class", "p-2 items");
 
-  this.setAttribute("class", "list-group-item list-group-item-action active");
-  activated = this;
+  if (activated == undefined) {
+    items.setAttribute("class", "p-2 items");
+
+    this.setAttribute("class", "list-group-item list-group-item-action active");
+    activated = this;
+  } else if (this == activated) {
+    // Deactivate activated
+    activated.setAttribute("class", "list-group-item list-group-item-action");
+    // Hide items
+    items.setAttribute("class", "items d-none");
+
+    activated = undefined;
+  } else {
+    // Activate this
+    this.setAttribute("class", "list-group-item list-group-item-action active");
+    // Unhide items
+    items.setAttribute("class", "p-2 items");
+
+    // Deactivate activated
+    activated.setAttribute("class", "list-group-item list-group-item-action");
+    // Hide items
+    items.setAttribute("class", "items d-none");
+
+    activated = this;
+  }
 }
 
 function deleteCart(cartId) {
@@ -43,11 +50,14 @@ function deleteCart(cartId) {
   });
 }
 
-function addItem(id) {
-  console.log(id);
-  let parent = this.parentNode;
-  console.log(this);
-}
+// function deleteCart() {
+//   fetch({
+//     method: "POST",
+//     body: JSON.stringify({ cartId: cartId }),
+//   }).then((response) => {
+//     window.location.href = "/";
+//   });
+// }
 
 function deleteItem(cartId, itemId) {
   let item = document.getElementById(itemId);
