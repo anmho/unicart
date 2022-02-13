@@ -27,7 +27,7 @@ def home():
     return render_template("index.html", user=current_user)
 
 
-@views.route("/create_cart")
+@views.route("/create-cart")
 @login_required
 def create_cart(name, description):
     new_cart = Cart(name=name, description=description,
@@ -47,9 +47,10 @@ def edit_cart(id):
     if request.method == "POST":
         name = request.form.get("name")
         url = request.form.get("url")
+        price = request.form.get("price")
 
         if name:
-            new_item = Item(name=name, url=url, cart_id=cart.id)
+            new_item = Item(name=name, url=url, cart_id=cart.id, price=price)
             db.session.add(new_item)
             db.session.commit()
             flash("Successfully added item", "success")

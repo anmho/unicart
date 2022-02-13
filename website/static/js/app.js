@@ -60,6 +60,15 @@ function deleteCart(cartId) {
 //   });
 // }
 
+// function toggleEditBtn() {
+//   this.parentNode
+
+// }
+
+// function editItem(itemId) {
+//   document.querySelector()
+// }
+
 function deleteItem(cartId, itemId) {
   let item = document.getElementById(itemId);
 

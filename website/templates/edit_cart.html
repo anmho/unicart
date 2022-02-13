@@ -6,53 +6,94 @@
   {% for item in cart.items|reverse %}
 
   <!-- Cart Item -->
-  <div id="{{item.id}}" class="d-flex p-2 flex-row list-group-item list-group-item-action">
-    <form class="d-none" method="POST" autocomplete="off">
+  <div
+    id="{{item.id}}"
+    class="d-flex p-2 flex-row list-group-item list-group-item-action"
+  >
+    <!-- <form
+      action="url_for('/edit_cart/{{item.id}}"
+      class="edit-form"
+      method="POST"
+      autocomplete="off"
+    >
       <div class="d-flex flex-row">
-        <input name="name" type="text" class="m-1 form-control" placeholder="Name" />
-        <input name="url" type="text" class="m-1 form-control" placeholder="Link" />
+        <input
+          name="name"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Name"
+          value=""
+        />
+        <input
+          name="url"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Link"
+        />
+        <input
+          name="price"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Price"
+        />
         <button type="submit" class="m-1 btn btn-primary">Add</button>
       </div>
-    </form>
+    </form> -->
 
+    <div class="item-info">
+      <div class="d-flex flex-row">
+        <a class="m-1" href="{{item.url}}"> <h3>{{item.name}}</h3> </a>
+        <h3 class="m-1">&dollar;{{item.price}}</h3>
+      </div>
+    </div>
 
-    <a class="m-1" href="{{item.url}}"> {{item.name}} </a>
     <div class="ms-auto">
-      <button onclick="editItem({{item.id}})" type="button" class="m-1 btn btn-primary">
+      <button
+        onclick="editItem({{item.id}})"
+        type="button"
+        class="m-1 btn btn-primary"
+      >
         Edit
       </button>
 
-
-
-      <button onclick="deleteItem({{item.cart_id}}, {{item.id}})" type="button"
-        class="m-1 ml-auto btn btn-danger close-button">
+      <button
+        onclick="deleteItem({{item.cart_id}}, {{item.id}})"
+        type="button"
+        class="m-1 ml-auto btn btn-danger close-button"
+      >
         &times
       </button>
     </div>
   </div>
-  <!-- Edit Fields -->
-  <div class="d-flex p-2 flex-row list-group-item list-group-item-action d-none">
+
+  {% endfor %}
+
+  <!-- Create Item -->
+  <li class="p-2 list-group-item">
     <form method="POST" autocomplete="off">
       <div class="d-flex flex-row">
-        <input name="name" type="text" class="m-1 form-control" placeholder="Name" />
-        <input name="url" type="text" class="m-1 form-control" placeholder="Link" />
+        <input
+          name="name"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Name"
+        />
+        <input
+          name="url"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Link"
+        />
+        <input
+          name="price"
+          type="text"
+          class="m-1 form-control"
+          placeholder="Price"
+        />
         <button type="submit" class="m-1 btn btn-primary">Add</button>
       </div>
     </form>
-  </div>
-</div>
-
-{% endfor %}
-
-<li class="p-2 list-group-item">
-  <form method="POST" autocomplete="off">
-    <div class="d-flex flex-row">
-      <input name="name" type="text" class="m-1 form-control" placeholder="Name" />
-      <input name="url" type="text" class="m-1 form-control" placeholder="Link" />
-      <button type="submit" class="m-1 btn btn-primary">Add</button>
-    </div>
-  </form>
-</li>
+  </li>
 </div>
 
 {% endblock %}

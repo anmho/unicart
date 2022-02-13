@@ -8,11 +8,14 @@ from os import path
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile("config.py")
+    # Setup Configuration
+    app.config.from_pyfile("config.py") 
 
+    # Register Blueprints
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
 
+    # Bind the database to the app
     db.init_app(app)
     create_database(app)
 
