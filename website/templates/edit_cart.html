@@ -39,18 +39,41 @@
           placeholder="Price"
           value="{{item.price}}"
         />
-        <button type="submit" class="m-1 btn btn-primary">Add</button>
+
+        <button
+          type="submit"
+          onclick="saveChanges({{item.id}})"
+          class="m-1 btn btn-primary"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          class="m-1 btn btn-primary"
+          onclick="closeEditForm({{item.id}})"
+        >
+          Close
+        </button>
       </form>
     </div>
 
-    <div class="item-info">
+    <div class="item-info d-flex flex-row flex-fill">
       <div class="d-flex flex-row">
         <a class="m-1" href="{{item.url}}"> <h3>{{item.name}}</h3> </a>
         <h3 class="m-1">&dollar;{{item.price}}</h3>
       </div>
+      <div class="ms-auto d-flex flex-row">
+        <button
+          onclick="editItem({{item.id}})"
+          type="button"
+          class="m-1 btn btn-primary"
+        >
+          Edit
+        </button>
+      </div>
     </div>
 
-    <div class="ms-auto d-flex flex-row">
+    <!-- <div class="ms-auto d-flex flex-row">
       <button
         onclick="editItem({{item.id}})"
         type="button"
@@ -65,7 +88,7 @@
       >
         &times
       </button>
-    </div>
+    </div> -->
   </div>
 
   {% endfor %}

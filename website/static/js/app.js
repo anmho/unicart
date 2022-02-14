@@ -66,6 +66,7 @@ function deleteCart(cartId) {
 // }
 
 function editItem(itemId) {
+  // open edit item
   let item = document.querySelector(`[id='${itemId}']`);
   console.log(item);
   let itemInfo = item.querySelector(".item-info");
@@ -74,6 +75,20 @@ function editItem(itemId) {
   let editItemForm = item.querySelector(".edit-form");
   console.log(editItemForm);
   editItemForm.classList.remove("d-none");
+}
+
+function closeEditForm(itemId) {
+  console.log(itemId);
+  let item = document.querySelector(`[id='${itemId}']`);
+  console.log(item);
+
+  let itemInfo = item.querySelector(".item-info");
+  console.log(itemInfo);
+  itemInfo.classList.remove("d-none");
+
+  let editItemForm = item.querySelector(".edit-form");
+  editItemForm.classList.add("d-none");
+  // console.log(item);
 }
 
 // function saveChanges(itemId) {
