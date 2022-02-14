@@ -8,37 +8,40 @@
   <!-- Cart Item -->
   <div
     id="{{item.id}}"
-    class="d-flex p-2 flex-row list-group-item list-group-item-action"
+    class="list-group-item-action list-group-item d-flex flex-row p-2"
   >
-    <!-- <form
-      action="url_for('/edit_cart/{{item.id}}"
-      class="edit-form"
-      method="POST"
-      autocomplete="off"
-    >
-      <div class="d-flex flex-row">
+    <!-- Edit Form -->
+    <div class="edit-form d-none flex-grow-1">
+      <form
+        action="url_for('/edit_cart/{{item.id}}"
+        class="d-flex flex-row"
+        method="POST"
+        autocomplete="off"
+      >
         <input
           name="name"
           type="text"
           class="m-1 form-control"
           placeholder="Name"
-          value=""
+          value="{{item.name}}"
         />
         <input
           name="url"
           type="text"
           class="m-1 form-control"
           placeholder="Link"
+          value="{{item.url}}"
         />
         <input
           name="price"
           type="text"
           class="m-1 form-control"
           placeholder="Price"
+          value="{{item.price}}"
         />
         <button type="submit" class="m-1 btn btn-primary">Add</button>
-      </div>
-    </form> -->
+      </form>
+    </div>
 
     <div class="item-info">
       <div class="d-flex flex-row">
@@ -47,7 +50,7 @@
       </div>
     </div>
 
-    <div class="ms-auto">
+    <div class="ms-auto d-flex flex-row">
       <button
         onclick="editItem({{item.id}})"
         type="button"
@@ -55,7 +58,6 @@
       >
         Edit
       </button>
-
       <button
         onclick="deleteItem({{item.cart_id}}, {{item.id}})"
         type="button"

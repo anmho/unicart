@@ -65,8 +65,20 @@ function deleteCart(cartId) {
 
 // }
 
-// function editItem(itemId) {
-//   document.querySelector()
+function editItem(itemId) {
+  let item = document.querySelector(`[id='${itemId}']`);
+  console.log(item);
+  let itemInfo = item.querySelector(".item-info");
+  console.log(itemInfo);
+  itemInfo.classList.add("d-none");
+  let editItemForm = item.querySelector(".edit-form");
+  console.log(editItemForm);
+  editItemForm.classList.remove("d-none");
+}
+
+// function saveChanges(itemId) {
+
+//   fetch("/edit-item")
 // }
 
 function deleteItem(cartId, itemId) {
