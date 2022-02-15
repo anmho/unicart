@@ -74,6 +74,27 @@ def delete_cart():
     return jsonify({})
 
 
+@views.route("/edit-item/<int:id>", methods=["POST"])
+@login_required
+def edit_item(id):
+    item = Item.query.get(id)
+    cart = Cart.query.get(item.cart_id)
+
+    if cart.user_id == current_user.id:
+        try:
+            item.name = request.form.get("name")
+            item.url = request.form.get("url")
+            item.price = request.form.get(
+                "price") if request.form.get("price") else 0
+            db.session.commit()
+        except:
+            flash("That didn't work")
+    else:
+        abort(403)
+
+    return redirect(url_for("views.edit_cart", id=item.cart_id))
+
+
 @views.route("/delete-item", methods=["POST"])
 def delete_item():
     body = json.loads(request.data)

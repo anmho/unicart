@@ -51,50 +51,31 @@ function deleteCart(cartId) {
   });
 }
 
-// function deleteCart() {
-//   fetch({
-//     method: "POST",
-//     body: JSON.stringify({ cartId: cartId }),
-//   }).then((response) => {
-//     window.location.href = "/";
-//   });
-// }
-
-// function toggleEditBtn() {
-//   this.parentNode
-
-// }
-
 function editItem(itemId) {
   // open edit item
   let item = document.querySelector(`[id='${itemId}']`);
-  console.log(item);
   let itemInfo = item.querySelector(".item-info");
-  console.log(itemInfo);
   itemInfo.classList.add("d-none");
+
   let editItemForm = item.querySelector(".edit-form");
-  console.log(editItemForm);
   editItemForm.classList.remove("d-none");
 }
 
 function closeEditForm(itemId) {
-  console.log(itemId);
   let item = document.querySelector(`[id='${itemId}']`);
-  console.log(item);
-
   let itemInfo = item.querySelector(".item-info");
-  console.log(itemInfo);
   itemInfo.classList.remove("d-none");
 
   let editItemForm = item.querySelector(".edit-form");
   editItemForm.classList.add("d-none");
-  // console.log(item);
 }
 
-// function saveChanges(itemId) {
-
-//   fetch("/edit-item")
-// }
+function saveChanges(itemId) {
+  fetch("/edit-item");
+  console.log(itemId);
+  
+  
+}
 
 function deleteItem(cartId, itemId) {
   let item = document.getElementById(itemId);

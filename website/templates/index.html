@@ -72,7 +72,11 @@
     <div class="d-flex">
       <div class="p-2"><h3>{{cart.name}}</h3></div>
       <div class="p-2">
-        <h3>&dollar;{{cart.items | sum(attribute="price")}}</h3>
+        <h3>
+          {%with price = cart.items | sum(attribute="price") %}
+            {{"$%.2f"|format(price)}}
+          {% endwith %}
+        </h3>
       </div>
       <div class="ms-auto pt-2">
         <a
